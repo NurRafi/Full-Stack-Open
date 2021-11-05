@@ -1,0 +1,22 @@
+title What happens when an user submits a form to a SPA page written in vanilla Javascript
+
+note over browser: The user enters input and clicks on Save
+
+note over browser:
+The browser creates a note and adds it to the existing
+notes array whose data was received from the server when
+the page was first loaded
+end note
+
+note over browser:
+Without reloading the page, the browser calls the
+redrawNotes() function which renders notes to display
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note right of browser:
+{"content":"Nur Rafi","date":"2021-11-05T15:25:40.836Z"}
+with content-type as application/json
+end note
+
+server-->browser: STATUS CODE 201 with the response\n{"message":"note created"}

@@ -1,0 +1,29 @@
+title What happens when a form is submitted on a traditional web application
+
+note over browser: User enters input and clicks on Save
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over server: Server receives the form data
+server-->browser: 302 REDIRECT TO https://studies.cs.helsinki.fi/exampleapp/notes
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML Code (content-encoding: gzip)
+note over browser: The browser decodes from gzip and starts reading the HTML code
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+
+note over browser: The browser starts to execute the script
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{"content":"Nur Rafi","date":"2021-11-05T05:46:01.797Z"}, ...]\nwith STATUS CODE 200
+
+note over browser:
+The browser runs the rest of the script after receiving the
+full data (since readyState == 4) which executes the event
+handler function that renders notes to display
+end note
